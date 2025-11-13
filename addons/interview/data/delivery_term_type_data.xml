@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- In 3 days -->
+        <record id="delivery_term_3_days" model="delivery.term.type">
+            <field name="name">In 3 days</field>
+            <field name="calculation_type">days</field>
+            <field name="days_offset">3</field>
+        </record>
+
+        <!-- In a week -->
+        <record id="delivery_term_1_week" model="delivery.term.type">
+            <field name="name">In a week</field>
+            <field name="calculation_type">days</field>
+            <field name="days_offset">7</field>
+        </record>
+
+        <!-- Last day of current month -->
+        <record id="delivery_term_end_of_month" model="delivery.term.type">
+            <field name="name">Last day of the month</field>
+            <field name="calculation_type">end_of_month</field>
+        </record>
+
+        <!-- After Sunday (next Monday) -->
+        <record id="delivery_term_after_sunday" model="delivery.term.type">
+            <field name="name">After Sunday (Monday)</field>
+            <field name="calculation_type">next_weekday</field>
+            <field name="weekday">0</field>
+        </record>
+    </data>
+</odoo>
