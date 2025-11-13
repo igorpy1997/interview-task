@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend sale order line tree view to add width, height, and square_meters -->
+    <record id="view_order_form_inherit_interview" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.interview</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Add fields to order line tree -->
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
+                <field name="width" optional="show"/>
+                <field name="height" optional="show"/>
+                <field name="square_meters" optional="show"/>
+            </xpath>
+
+            <!-- Add fields to order line form -->
+            <xpath expr="//field[@name='order_line']/form//field[@name='product_uom_qty']" position="after">
+                <field name="width"/>
+                <field name="height"/>
+                <field name="square_meters"/>
+            </xpath>
+
+            <!-- Add delivery term fields below partner_id -->
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="delivery_term_type_id" options="{'no_create': True, 'no_open': True}"/>
+                <field name="delivery_date"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

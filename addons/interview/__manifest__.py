@@ -23,6 +23,7 @@
         'views/sale_order_views.xml',
         'views/delivery_term_type_views.xml',
         'data/delivery_term_type_data.xml',
+        'data/ir_cron_data.xml',
     ],
     'demo': [],
     'installable': True,

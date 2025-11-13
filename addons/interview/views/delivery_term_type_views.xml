@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Delivery Term Type Tree View -->
+    <record id="view_delivery_term_type_tree" model="ir.ui.view">
+        <field name="name">delivery.term.type.tree</field>
+        <field name="model">delivery.term.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="calculation_type"/>
+                <field name="days_offset" optional="hide"/>
+                <field name="weekday" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Delivery Term Type Form View -->
+    <record id="view_delivery_term_type_form" model="ir.ui.view">
+        <field name="name">delivery.term.type.form</field>
+        <field name="model">delivery.term.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="calculation_type"/>
+                        </group>
+                        <group>
+                            <field name="days_offset" attrs="{'invisible': [('calculation_type', '!=', 'days')], 'required': [('calculation_type', '=', 'days')]}"/>
+                            <field name="weekday" attrs="{'invisible': [('calculation_type', '!=', 'next_weekday')], 'required': [('calculation_type', '=', 'next_weekday')]}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Delivery Term Type Action -->
+    <record id="action_delivery_term_type" model="ir.actions.act_window">
+        <field name="name">Delivery Term Types</field>
+        <field name="res_model">delivery.term.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Delivery Term Type
+            </p>
+            <p>
+                Configure delivery term types to automatically calculate delivery dates.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item in Sales -->
+    <menuitem id="menu_delivery_term_type"
+              name="Delivery Term Types"
+              parent="sale.sale_config"
+              action="action_delivery_term_type"
+              sequence="50"/>
+</odoo>
