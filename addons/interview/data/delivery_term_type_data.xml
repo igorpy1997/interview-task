@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Delivery Term Types Data -->
+        <record id="delivery_term_three_days" model="delivery.term.type">
+            <field name="name">In three days</field>
+            <field name="term_type">days</field>
+            <field name="days_offset">3</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="delivery_term_one_week" model="delivery.term.type">
+            <field name="name">In one week</field>
+            <field name="term_type">days</field>
+            <field name="days_offset">7</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="delivery_term_last_day_month" model="delivery.term.type">
+            <field name="name">Last day of the month</field>
+            <field name="term_type">last_day_month</field>
+            <field name="days_offset">0</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="delivery_term_next_monday" model="delivery.term.type">
+            <field name="name">After Sunday</field>
+            <field name="term_type">next_monday</field>
+            <field name="days_offset">0</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</odoo>
