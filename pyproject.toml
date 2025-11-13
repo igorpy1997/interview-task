@@ -4,50 +4,23 @@ version = "0.1.0"
 description = "Odoo Development Project"
 requires-python = ">=3.12"
 dependencies = [
-    # Core Odoo dependencies
-    "babel==2.9.1",
-    "chardet==4.0.0",
-    "cryptography==3.4.8",
-    "decorator==4.4.2",
-    "docutils==0.17",
-    "ebaysdk==2.1.5",
-    "freezegun==1.1.0",
-    "gevent==22.10.2",
-    "greenlet==2.0.2",
-    "idna==2.10",
-    "jinja2==3.1.2",
-    "libsass==0.22.0",
-    "lxml==4.9.2",
-    "markupsafe==2.1.1",
-    "num2words==0.5.10",
-    "ofxparse==0.21",
-    "passlib==1.7.4",
-    "pillow==9.4.0",
-    "polib==1.1.1",
-    "psutil==5.8.0",
-    "psycopg2==2.9.5",
-    "pydot==1.4.2",
-    "pyopenssl==22.0.0",
-    "pypdf2==1.26.0",
-    "pypdf4==1.27.0",
-    "pyserial==3.5",
-    "python-dateutil==2.8.2",
-    "pytz==2022.7",
-    "pyusb==1.2.1",
-    "qrcode==7.3.1",
-    "reportlab==3.6.8",
-    "requests==2.28.2",
-    "urllib3==1.26.14",
-    "vobject==0.9.6.1",
-    "werkzeug==2.0.2",
-    "xlrd==2.0.1",
-    "xlsxwriter==3.0.8",
-    "xlwt==1.3.0",
-    "zeep==4.1.0",
-    # Optional dependencies
-    "python-ldap==3.4.0",
-    "psycopg2-binary==2.9.5",
-    "watchdog==2.2.1",
+    # Core essentials for Odoo
+    "babel>=2.9.0",
+    "decorator>=4.4.0",
+    "jinja2>=3.0.0",
+    "lxml>=5.0.0",
+    "markupsafe>=2.0.0",
+    "passlib[bcrypt]>=1.7.0",
+    "pillow>=9.0.0",
+    "psycopg2-binary>=2.9.0",
+    "python-dateutil>=2.8.0",
+    "pytz>=2022.0",
+    "requests>=2.28.0",
+    "werkzeug>=2.0.0,<3.0.0",
+    "xlrd>=2.0.0",
+    "xlsxwriter>=3.0.0",
+    # Development essentials
+    "watchdog>=2.0.0",
 ]
 
 [project.optional-dependencies]
@@ -62,8 +35,36 @@ dev = [
 ]
 lint = [
     "mypy==1.13.0",
-    "types-requests==2.28.11.8",
-    "types-python-dateutil==2.8.19.20240906",
+    "types-requests>=2.28.0,<3.0",
+    "types-python-dateutil>=2.8.0,<3.0",
+]
+ldap = [
+    "python-ldap>=3.4.0",
+]
+full = [
+    # Additional Odoo features (install only if needed)
+    "chardet>=4.0.0",
+    "cryptography>=35.0",
+    "docutils>=0.17",
+    "ebaysdk>=2.1.0",
+    "gevent>=22.10.0",
+    "greenlet>=2.0.0",
+    "libsass>=0.22.0",
+    "num2words>=0.5.0",
+    "ofxparse>=0.21",
+    "polib>=1.1.0",
+    "psutil>=5.8.0",
+    "pydot>=1.4.0",
+    "pyopenssl>=22.0.0",
+    "pypdf2>=1.26.0",
+    "pyserial>=3.5",
+    "pyusb>=1.2.0",
+    "qrcode>=7.3.0",
+    "reportlab>=3.6.0",
+    "urllib3>=1.26.0",
+    "vobject>=0.9.0",
+    "xlwt>=1.3.0",
+    "zeep>=4.1.0",
 ]
 
 [tool.uv]

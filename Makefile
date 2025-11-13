@@ -186,8 +186,20 @@ test:
 .PHONY: sync
 sync:
 	@echo "📦 Syncing dependencies with uv..."
-	uv sync --all-extras
+	uv sync --extra dev
 	@echo "✅ Dependencies synced!"
+
+.PHONY: sync-all
+sync-all:
+	@echo "📦 Syncing ALL dependencies with uv..."
+	uv sync --all-extras
+	@echo "✅ All dependencies synced!"
+
+.PHONY: sync-full
+sync-full:
+	@echo "📦 Syncing with full Odoo features..."
+	uv sync --extra dev --extra full
+	@echo "✅ Full dependencies synced!"
 
 .PHONY: lint
 lint:
