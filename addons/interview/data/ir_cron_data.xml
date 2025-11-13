@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Cron Job for Daily Delivery Date Recalculation -->
+        <record id="ir_cron_recalculate_delivery_dates" model="ir.cron">
+            <field name="name">Recalculate Delivery Dates</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">
+# Find all unconfirmed sale orders with delivery term types
+orders = model.search([
+    ('state', 'in', ['draft', 'sent']),
+    ('delivery_term_type_id', '!=', False)
+])
+
+# Recalculate delivery dates
+for order in orders:
+    order.recalculate_delivery_date()
+            </field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="active">True</field>
+            <field name="doall">False</field>
+        </record>
+    </data>
+</odoo>

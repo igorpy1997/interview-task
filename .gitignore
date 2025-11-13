@@ -49,5 +49,6 @@ Thumbs.db
 *.wmv
 .env
 data/
+!addons/*/data/
 
 
