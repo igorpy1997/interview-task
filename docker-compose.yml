@@ -1,0 +1,50 @@
+services:
+  postgres:
+    image: postgres:17.6
+    environment:
+      POSTGRES_DB: ${PSQL_DB}
+      POSTGRES_USER: ${PSQL_USER}
+      POSTGRES_PASSWORD: ${PSQL_PASSWORD}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - odoo-network
+
+  odoo:
+    build:
+      context: ./odoo
+      dockerfile: ../Dockerfile
+      args:
+        USER_ID: ${USER_ID:-1000}
+        GROUP_ID: ${GROUP_ID:-1000}
+        USER_NAME: ${USER_NAME:-odoo}
+    environment:
+      - PSQL_HOST=${PSQL_HOST}
+      - PSQL_PORT=${PSQL_PORT}
+      - PSQL_USER=${PSQL_USER}
+      - PSQL_PASSWORD=${PSQL_PASSWORD}
+      - PSQL_DB=${PSQL_DB}
+      - ODOO_MASTER_PASSWORD=${ODOO_MASTER_PASSWORD}
+    ports:
+      - "8069:8069"
+    volumes:
+      - ./addons:/mnt/extra-addons
+      - ./config:/etc/odoo
+      - ./data/odoo:/var/lib/odoo
+      - ./logs:/var/log/odoo
+      - ./odoo:/mnt/odoo:ro
+    depends_on:
+      - postgres
+    restart: always
+    networks:
+      - odoo-network
+    command: ["uv", "run", "python3", "/mnt/odoo/odoo-bin", "--config=/etc/odoo/odoo.conf"]
+
+
+
+networks:
+  odoo-network:
+    driver: bridge
